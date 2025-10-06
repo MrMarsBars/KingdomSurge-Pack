@@ -1,0 +1,20 @@
+name: Build Resource Pack
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository files
+      uses: actions/checkout@v4
+
+    - name: Zip the pack contents correctly
+      run: zip -r KingdomSurge-Pack.zip ./assets ./pack.mcmeta
+
+    - name: Upload the finished zip file
+      uses: actions/upload-artifact@v4
+      with:
+        name: KingdomSurge-Pack
+        path: KingdomSurge-Pack.zip
